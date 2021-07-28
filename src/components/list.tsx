@@ -1,5 +1,4 @@
-import React, { useEffect, useState, FC } from 'react'
-import { getUser } from '../service/user.service'
+import { useEffect, useState, FC } from 'react'
 
 export interface ListProps{
     id: number,
