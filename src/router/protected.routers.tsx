@@ -6,7 +6,8 @@ import SimpleLayout from '../common/layout/simple.layout'
 /**
  * routes available without authorization
  */
-const FindPeoplePage = lazy(() => import('../pages/find-people-page'))
+const FindPeoplePage = lazy(() => import('../pages/find-people.page'))
+const ListPage = lazy(() => import('../pages/list.page'))
 
 /**
  * ProtectedRoutes
@@ -17,11 +18,14 @@ const ProtectedRoutes: FC = () => {
 
   return (
     <Switch>
+          <SimpleLayout>
             <Route exact path="/">
-              <SimpleLayout>
               <FindPeoplePage />
-              </SimpleLayout>
             </Route>
+            <Route exact path="/list">
+              <ListPage />
+            </Route>
+          </SimpleLayout>
             <Redirect to="/" />
           </Switch>
   )

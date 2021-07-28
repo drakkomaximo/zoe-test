@@ -1,16 +1,19 @@
-import { FC, useState } from 'react'
+import { FC, useContext } from 'react'
+import { useHistory } from 'react-router-dom'
 import { CashIcon } from '../../assets/icons/cash.icon'
 import { LeftArrowIcon } from '../../assets/icons/left-arrow.icon'
 import MatchButton from '../../common/buttons/match.button'
 import SearchInput from '../../common/inputs/search.input'
+import { ListContext } from '../../context/ListContext'
 import { getUser } from '../../service/user.service'
 import { ListProps } from '../list'
 import { SearchContainer } from './styles'
 import PeopleInformation from './ui/people-information'
 
 export const FindPeople:FC = () => {
-    const [valueSearched, setValueSearched] = useState<number | ''>('')
-  const [listSearched, setlistSearched] = useState<any>([])
+  const history = useHistory()
+  
+  const { setlistSearched, valueSearched, setValueSearched } = useContext(ListContext)
   const validate = (n: number) =>{
     if(n < 99999){
       setValueSearched(n)
@@ -24,13 +27,12 @@ export const FindPeople:FC = () => {
           (fIncome: ListProps) => (fIncome.income <= valueSearched + 10000) && (fIncome.income >= valueSearched - 10000)
         )
         setlistSearched(filterIncomePositive)
+        history.push('/list')
       }
     }else{
       setValueSearched('')
       setlistSearched('')
     }
-    setValueSearched('')
-    console.log(listSearched)
   }
     return (
         <>

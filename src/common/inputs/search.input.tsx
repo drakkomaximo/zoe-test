@@ -1,6 +1,6 @@
 import React, {FC} from 'react'
 import { PeopleContainerInformationText } from '../../components/find-people/styles'
-import { StyledInput } from './styles'
+import { ContainerInput, SimpleDiv, StyledInput } from './styles'
 
 interface Props {
     customIcon?: JSX.Element
@@ -17,9 +17,7 @@ const SearchInput: FC<Props> = (
         onChanceValues,
         inputValue}) => {
     return (
-        <div style={{
-            width:'100%'
-          }}>
+        <SimpleDiv>
             <PeopleContainerInformationText 
           fSize={'14px'}
           fWeight={400}
@@ -28,21 +26,15 @@ const SearchInput: FC<Props> = (
           marginText={'1rem 0rem'}
           paddingText={'0rem'}
         >Current income.</PeopleContainerInformationText>
-        <div style={{
-          display:'flex',
-          border: '1px solid #DCDCDC',
-          padding: '0.5rem',
-          boxSizing: 'border-box',
-          borderRadius: '4px',
-        }}>
+        <ContainerInput>
         {customIcon}
         <StyledInput 
           type={typeInput} 
           max={maxValuesLength} 
           onChange={onChanceValues} 
           value={inputValue}/>
-        </div>
-          </div>
+        </ContainerInput>
+          </SimpleDiv>
     )
 }
 

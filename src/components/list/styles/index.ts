@@ -4,7 +4,7 @@ export const PeopleContainerInformation = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 8rem;
+    margin-top: 2rem;
 `
 
 export const PeopleContainerInformationText = styled.p<{
@@ -31,4 +31,9 @@ export const SearchContainer = styled.div`
     width: 100%;
     max-width: 375px;
     padding: 0rem 2rem;
+`
+
+export const ButtonsContainer = styled.div`
+    display: flex;
+    justify-content: space-between;
 `
