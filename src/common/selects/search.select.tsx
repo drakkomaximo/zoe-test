@@ -1,13 +1,18 @@
-import {FC, useContext} from 'react'
+import {FC, useContext, useState} from 'react'
+import { ShowLessIcon } from '../../assets/icons/show-less.icon'
+import { ShowMoreIcon } from '../../assets/icons/show-more.icon'
 import { PeopleContainerInformationText } from '../../components/find-people/styles'
 import { ListContext } from '../../context/ListContext'
-import { ContainerInput, SimpleDiv } from '../inputs/styles'
+import { ContainerInput, ContainerOptions, SimpleDiv } from '../inputs/styles'
 import { StyledOption, StyledSelect } from './styles'
 
 const SearchSelect: FC = () => {
-  const { addrtype, setAddrType } = useContext(ListContext)
-const handleAddrTypeChange = (e: any) =>{
-    setAddrType(e.target.value);
+  const { setAddrType, internalLabel, setInternalLabel } = useContext(ListContext)
+  const [openOptions, setOpenOptions] = useState(false)
+const handleAddrTypeChange = (data: any) =>{
+    setInternalLabel(data.title)
+    setAddrType(data.value);
+    setOpenOptions(false);
 }
 
 const optionsSelect = [
@@ -45,22 +50,42 @@ const optionsSelect = [
           paddingText={'0rem'}
         >Order agents by.</PeopleContainerInformationText>
         <ContainerInput>
-        <StyledSelect 
-            onChange={handleAddrTypeChange} 
-            value={addrtype}>
+        <StyledSelect onClick={()=>{setOpenOptions(!openOptions)}}>
+        <PeopleContainerInformationText 
+          fSize={'14px'}
+          fWeight={400}
+          colorText={'#8B8B8B'}
+          textAlign={'left'}
+          marginText={'0rem'}
+          paddingText={'0rem'}
+        >{internalLabel}</PeopleContainerInformationText>
           {
+            openOptions ? (
+              <ShowLessIcon />
+            ): (
+<ShowMoreIcon />
+            )
+            
+          }
+        </StyledSelect>
+        </ContainerInput>
+        {
+          openOptions && (
+            <ContainerOptions>
+        {
             optionsSelect.map((op)=>{
               return (
                 <StyledOption 
                   key={op.id}
-                  value={op.value}
+                  onClick={()=> {handleAddrTypeChange(op)}}
                 >{op.title}
                 </StyledOption>
               )
             })
           }
-        </StyledSelect>
-        </ContainerInput>
+        </ContainerOptions>
+          )
+        }
       </SimpleDiv>
     )
 }

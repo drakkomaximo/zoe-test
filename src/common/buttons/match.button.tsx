@@ -1,6 +1,6 @@
 import {FC} from 'react'
-import { PeopleContainerInformationText } from '../../components/find-people/styles'
-import { MatchButtonStyle } from './styles'
+import { PeopleContainerInformationTextButton } from '../../components/find-people/styles'
+import { MatchButtonStyle, MatchButtonTitleSpan } from './styles'
 
 interface Props {
     customIcon?: JSX.Element
@@ -11,7 +11,7 @@ interface Props {
 const MatchButton: FC<Props> = ({action, title, customIcon}) => {
     return (
       <MatchButtonStyle onClick={action}>
-        <PeopleContainerInformationText
+        <PeopleContainerInformationTextButton
         fSize={'16px'}
         fWeight={700}
         colorText={'#FFFFFF'}
@@ -19,9 +19,11 @@ const MatchButton: FC<Props> = ({action, title, customIcon}) => {
         marginText={'0rem'}
         paddingText={'0rem'}
         >
+          <MatchButtonTitleSpan>
         {title}
+          </MatchButtonTitleSpan>
         {customIcon}
-        </PeopleContainerInformationText>
+        </PeopleContainerInformationTextButton>
         </MatchButtonStyle>
     )
 }

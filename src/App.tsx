@@ -8,15 +8,11 @@ import { ListContext } from './context/ListContext';
 
 const App:FC = () => {
 
-  const [listSearched, setlistSearched] = useState<any>([/* {
-    id: 1,
-    name: "Michael",
-    avatar: "https://randomuser.me/api/portraits/men/59.jpg",
-    income: 85273
-  } */])
+  const [listSearched, setlistSearched] = useState<any>([])
   const [valueSearched, setValueSearched] = useState<number | ''>('')
   const [count, setCount] = useState<number>(3)
-  const [addrtype, setAddrType] = useState('')
+  const [addrtype, setAddrType] = useState('Select…')
+  const [internalLabel, setInternalLabel] = useState('Select...')
 
   return (
     <Suspense fallback={<MainLoading />}>
@@ -31,6 +27,8 @@ const App:FC = () => {
               setCount,
               addrtype,
               setAddrType,
+              internalLabel, 
+              setInternalLabel
               }}>
         <GlobalStyle />
         <BrowserRouter>

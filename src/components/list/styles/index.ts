@@ -36,4 +36,38 @@ export const SearchContainer = styled.div`
 export const ButtonsContainer = styled.div`
     display: flex;
     justify-content: space-between;
+    padding: 0rem 1rem;
+
+    @media (min-width: 600px) { 
+    justify-content: flex-end;
+    padding: 0rem;
+    }
+`
+
+export const RegenerateList = styled.div`
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 700;
+    color: #5C7BEB;
+    font-family: Helvetica;
+    text-align: center;
+
+`
+
+export const ContainerListWrap = styled.div`
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    @media (min-width: 600px) { 
+        justify-content: flex-start;
+        }
+
+`
+
+export const MainListContainer = styled.div`
+    width: 100vw;
+    padding: 0rem 2rem;
+    max-width: 984px;
 `

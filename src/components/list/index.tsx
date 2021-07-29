@@ -1,11 +1,15 @@
 import { useEffect, useState, FC, useContext } from 'react'
 import { useHistory } from 'react-router-dom'
+import { useWindowSize } from "@react-hook/window-size/throttled";
 import ShowButton from '../../common/buttons/show.button'
+import UserDesktopCard from '../../common/cards/user-desktop.card'
 import UserCard from '../../common/cards/user.card'
 import SearchSelect from '../../common/selects/search.select'
 import { ListContext } from '../../context/ListContext'
-import { ButtonsContainer } from './styles'
+import sortList from '../../helpers/sort-list'
+import { ButtonsContainer, ContainerListWrap, MainListContainer, RegenerateList } from './styles'
 import ListInformation from './ui/list-information'
+import { PeopleContainerInformationText } from '../find-people/styles';
 
 export interface ListProps{
     id: number,
@@ -17,73 +21,28 @@ export interface ListProps{
 export const List:FC = () => {
 
     const history = useHistory()
-    const { listSearched, valueSearched, count, setCount, addrtype } = useContext(ListContext)
+    const [width] = useWindowSize({ fps: 60 });
+    const { listSearched, setValueSearched, valueSearched, count, setCount, addrtype, setAddrType, setInternalLabel } = useContext(ListContext)
     const [lists, setLists] = useState<ListProps[] | []>([])
     const [storeNames, setstoreNames] = useState<ListProps[] | []>([])
 
     const storeName = (data: ListProps) =>{
         const filterNmae  =  lists.filter(
-            (fname: any) => fname.name !== data.name
+            (fname: any) => fname.id !== data.id
         )
         setLists(filterNmae)
         setstoreNames([...storeNames, data])
     }
 
-    const sortList = (type: string) =>{
-        switch (type) {
-            case 'id':
-                lists.sort((a: any, b:any) => {
-                    if (a.id > b.id) {
-                      return 1;
-                    }
-                    if (a.id < b.id) {
-                      return -1;
-                    }
-                    // a must be equal to b
-                    return 0;
-                  })
-                break;
-            case 'name':
-                lists.sort((a: any, b:any) => {
-                    if (a.name > b.name) {
-                      return 1;
-                    }
-                    if (a.name < b.name) {
-                      return -1;
-                    }
-                    // a must be equal to b
-                    return 0;
-                  })
-                break;
-            case 'high':
-                lists.sort((a: any, b:any) => {
-                    if (a.income > b.income) {
-                      return 1;
-                    }
-                    if (a.income < b.income) {
-                      return -1;
-                    }
-                    // a must be equal to b
-                    return 0;
-                  })
-                break;
-            case 'less':
-                lists.sort((a: any, b:any) => {
-                    if (a.income < b.income) {
-                      return 1;
-                    }
-                    if (a.income > b.income) {
-                      return -1;
-                    }
-                    // a must be equal to b
-                    return 0;
-                  })
-                break;
-        
-            default:
-                break;
-        }
+    const createList = () =>{
+      if(listSearched.length > 3){
+        const newlist = listSearched.slice(0, count)
+        setLists(newlist)
+    }else{
+        setLists(listSearched)
     }
+  }
+
 
     useEffect(() => {
         if(listSearched.length === 0 && valueSearched === ''){
@@ -94,55 +53,114 @@ export const List:FC = () => {
 
     useEffect(() => {
         if(addrtype !== ''){
-            sortList(addrtype)
+            sortList(addrtype, lists, setLists)
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [addrtype])
 
     useEffect(() => {
-        if(listSearched.length > 3){
-            const newlist = listSearched.slice(0, count)
-            console.log(newlist)
-            setLists(newlist)
-        }else{
-            setLists(listSearched)
-        }
+      createList()
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [listSearched, count])
 
     return (
-        <div>
+        <MainListContainer>
             <ListInformation value={valueSearched}/>
-            <SearchSelect />
+            {
+              listSearched.length > 0 ? (
+                <>
+                <SearchSelect />
             <br />
-            {lists.map( (listsMap) => {
+            <ContainerListWrap>
+            {lists.map( (listsMap, index) => {
                 return (
-                    <UserCard 
-                    action={()=> {return storeName(listsMap)}}
-                    key={listsMap.id}
-                    avatar={listsMap.avatar}
-                    name={listsMap.name}
-                    income={listsMap.income}
-                    id={listsMap.id}
-                    
-                    />
+                  width > 600 ?(
+                    <UserDesktopCard 
+                                        action={()=> {storeName(listsMap)}}
+                                        key={listsMap.id}
+                                        avatar={listsMap.avatar}
+                                        name={listsMap.name}
+                                        income={listsMap.income}
+                                        id={listsMap.id}
+                                        index={index}
+                                        />
+                                          ):(
+                                            <UserCard 
+                                        action={()=> {storeName(listsMap)}}
+                                        key={`${listsMap.id}/${index}`}
+                                        avatar={listsMap.avatar}
+                                        name={listsMap.name}
+                                        income={listsMap.income}
+                                        id={listsMap.id}
+                                        />
+                                          )
                 )
             })}
+            </ContainerListWrap>
+            
             {
                 lists.length > 0 && (
                     <ButtonsContainer>
                     <ShowButton 
-                        action={()=>{setCount( count === 3 ? 3 : count - 3)}}
+                        action={()=>{
+                          setCount( count === 3 ? 3 : count - 3)
+                          count !== 3 && setAddrType('Select...')
+                          count !== 3 && setInternalLabel('Select...')
+                        }}
                         title={'Show less -'}
                         type={'LESS'}
                     />
                     <ShowButton 
-                        action={()=>{setCount( count >= listSearched.length ? count : count + 3 )}}
+                        action={()=>{
+                          setCount( count >= listSearched.length ? count : count + 3 )
+                          count <= listSearched.length && setAddrType('Select...')
+                          count <= listSearched.length && setInternalLabel('Select...')
+                        }}
                         title={'Show more +'}
                         type={'MORE'}
                     />
                     </ButtonsContainer>
                 )
             }
-        </div>
+            {
+              lists.length === 0 && (
+<RegenerateList onClick={()=>{
+  createList()
+  setAddrType('Select...')
+  setInternalLabel('Select...')
+  setCount(3)
+}}>
+              Click to regenerate list
+              </RegenerateList>
+              )
+            }
+                </>
+              ):(
+                <>
+                <PeopleContainerInformationText
+        fSize={'20px'}
+        fWeight={700}
+        colorText={'var(--danger-dark)'}
+        textAlign={'center'}
+        marginText={'1rem 0rem 0rem'}
+        paddingText={'0rem'}
+        >No available Agents based on your income. Please try a different income value.</PeopleContainerInformationText>
+        <PeopleContainerInformationText
+        fSize={'20px'}
+        fWeight={700}
+        colorText={'#5C7BEB'}
+        textAlign={'center'}
+        marginText={'1rem 0rem 0rem'}
+        paddingText={'0rem'}
+        cursor={'pointer'}
+        onClick={()=>{ 
+          setValueSearched('')
+          history.push('/')}}
+        >Click here to return.</PeopleContainerInformationText>
+                </>
+              )
+            }
+            
+        </MainListContainer>
     )
 }

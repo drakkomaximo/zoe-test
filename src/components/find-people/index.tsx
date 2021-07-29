@@ -7,7 +7,7 @@ import SearchInput from '../../common/inputs/search.input'
 import { ListContext } from '../../context/ListContext'
 import { getUser } from '../../service/user.service'
 import { ListProps } from '../list'
-import { SearchContainer } from './styles'
+import { ButtonContainerDesktop, SearchContainer } from './styles'
 import PeopleInformation from './ui/people-information'
 
 export const FindPeople:FC = () => {
@@ -37,6 +37,7 @@ export const FindPeople:FC = () => {
     return (
         <>
         <PeopleInformation/>
+        <div>
         <SearchContainer>
           <SearchInput
             customIcon={<CashIcon />}
@@ -52,11 +53,14 @@ export const FindPeople:FC = () => {
             inputValue={valueSearched}
           />
         </SearchContainer>
+        <ButtonContainerDesktop>
         <MatchButton 
           action={search}
           title={'Get matches'}
-          customIcon={<LeftArrowIcon style={{marginLeft: '4rem', marginRight: '1rem'}} />}
+          customIcon={<LeftArrowIcon/>}
           />
+        </ButtonContainerDesktop>
+        </div>
         </>
     )
 }

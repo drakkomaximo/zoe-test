@@ -58,7 +58,6 @@ export const CustomImage = ({
         objectFit: 'cover',
         margin: marginImage,
         padding: paddingImage,
-        zIndex: zIndexImage,
         backgroundColor: backgroundColorImage,
         transition: '0.25s',
         filter: filterImage,
