@@ -1,16 +1,6 @@
 export const FontFamily = "'Lucida Sans'"
 
 export const COLORS = {
-  primary: '#1D6A58',
-  primaryMedium: '#00B188',
-  primaryLight: '#72D2BC',
-  primaryExtraLight: '#C0EFE4',
-  primaryExtraDarken: '#001712',
-  primaryDarken: '#1B2F2A',
-  grayDark: '#6E7472',
-  grayMedium: '#999999',
-  grayLight: '#E0E0E0',
-  white: '#FFFFFF',
   info: {
     dark: '#0084F4',
     medium: '#4EAEFF',

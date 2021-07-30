@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test on <ShowButton /> It should render the component: 
+            1) The title should be 'Show more +'
+            2) The type should be 'MORE' 1`] = `
+<button
+  className="sc-gKAaRy hbNDUu"
+  onClick={[Function]}
+>
+  <p
+    className="sc-dlnjwi gSthXn"
+  >
+    Show more +
+  </p>
+  <h1>
+    3
+  </h1>
+</button>
+`;

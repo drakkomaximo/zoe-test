@@ -43,7 +43,6 @@ export const List:FC = () => {
     }
   }
 
-
     useEffect(() => {
         if(listSearched.length === 0 && valueSearched === ''){
             history.push('/')
@@ -102,20 +101,10 @@ export const List:FC = () => {
                 lists.length > 0 && (
                     <ButtonsContainer>
                     <ShowButton 
-                        action={()=>{
-                          setCount( count === 3 ? 3 : count - 3)
-                          count !== 3 && setAddrType('Select...')
-                          count !== 3 && setInternalLabel('Select...')
-                        }}
                         title={'Show less -'}
                         type={'LESS'}
                     />
                     <ShowButton 
-                        action={()=>{
-                          setCount( count >= listSearched.length ? count : count + 3 )
-                          count <= listSearched.length && setAddrType('Select...')
-                          count <= listSearched.length && setInternalLabel('Select...')
-                        }}
                         title={'Show more +'}
                         type={'MORE'}
                     />

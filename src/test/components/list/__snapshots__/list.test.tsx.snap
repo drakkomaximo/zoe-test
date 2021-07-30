@@ -1,0 +1,282 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test on <List /> It should render the component correctly Part1: 
+            1) if the context value (listSearched) have values
+            2) if the context value (valueSearched) is equals a number
+            3) if the context value (addrtype) is equals a Select...
+            4) if the context value (count) is equals a 3 1`] = `
+<div
+  className="sc-fKgJPI hdQWmr"
+>
+  <div
+    className="sc-bkbkJK jSWBvy"
+  >
+    <p
+      className="sc-iemWCZ eMmknN"
+    >
+      Your matches
+    </p>
+    <p
+      className="sc-iemWCZ jNSNbF"
+    >
+      Your income: 
+      <span
+        className="sc-pNWdM fyKwqX"
+      >
+        $
+        20,000
+      </span>
+    </p>
+  </div>
+  <div
+    className="sc-crzoAE cwQYcI"
+  >
+    <p
+      className="sc-dlnjwi ftNYDk"
+    >
+      Order agents by.
+    </p>
+    <div
+      className="sc-ksluID bMLISG"
+    >
+      <div
+        className="sc-fnVZcZ eVFifn"
+        onClick={[Function]}
+      >
+        <p
+          className="sc-dlnjwi dgTBpW"
+        />
+        <svg
+          fill="none"
+          height={7}
+          viewBox="0 0 12 7"
+          width={12}
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M1.415 0L6.00001 4.32839L10.585 0L12 1.3358L6.00001 7L0 1.3358L1.415 0Z"
+            fill="#8B8B8B"
+          />
+        </svg>
+      </div>
+    </div>
+  </div>
+  <br />
+  <div
+    className="sc-kfYoZR cpxgYi"
+  >
+    <div
+      className="sc-kEqXSa fyPaxq"
+      onClick={[Function]}
+    >
+      <img
+        alt="image"
+        height="78px"
+        src="https://randomuser.me/api/portraits/men/80.jpg"
+        style={
+          Object {
+            "backgroundColor": "transparent",
+            "border": "none",
+            "borderRadius": "50%",
+            "boxShadow": "none",
+            "filter": "none",
+            "margin": "0px",
+            "objectFit": "cover",
+            "opacity": "1",
+            "padding": "0px",
+            "transition": "0.25s",
+          }
+        }
+        width="78px"
+      />
+      <div>
+        <p
+          className="sc-dlnjwi bkUepo"
+        >
+          Rand
+        </p>
+        <p
+          className="sc-dlnjwi cbrSPi"
+        >
+          ID: 
+          33
+        </p>
+        <p
+          className="sc-dlnjwi krtMok"
+        >
+          Income 
+          <span
+            className="sc-pNWdM fyKwqX"
+          >
+            $
+            12,580
+          </span>
+        </p>
+      </div>
+    </div>
+    <div
+      className="sc-kEqXSa fyPaxq"
+      onClick={[Function]}
+    >
+      <img
+        alt="image"
+        height="78px"
+        src="https://randomuser.me/api/portraits/women/25.jpg"
+        style={
+          Object {
+            "backgroundColor": "transparent",
+            "border": "none",
+            "borderRadius": "50%",
+            "boxShadow": "none",
+            "filter": "none",
+            "margin": "0px",
+            "objectFit": "cover",
+            "opacity": "1",
+            "padding": "0px",
+            "transition": "0.25s",
+          }
+        }
+        width="78px"
+      />
+      <div>
+        <p
+          className="sc-dlnjwi bkUepo"
+        >
+          Kathy
+        </p>
+        <p
+          className="sc-dlnjwi cbrSPi"
+        >
+          ID: 
+          34
+        </p>
+        <p
+          className="sc-dlnjwi krtMok"
+        >
+          Income 
+          <span
+            className="sc-pNWdM fyKwqX"
+          >
+            $
+            10,604
+          </span>
+        </p>
+      </div>
+    </div>
+    <div
+      className="sc-kEqXSa fyPaxq"
+      onClick={[Function]}
+    >
+      <img
+        alt="image"
+        height="78px"
+        src="https://randomuser.me/api/portraits/women/21.jpg"
+        style={
+          Object {
+            "backgroundColor": "transparent",
+            "border": "none",
+            "borderRadius": "50%",
+            "boxShadow": "none",
+            "filter": "none",
+            "margin": "0px",
+            "objectFit": "cover",
+            "opacity": "1",
+            "padding": "0px",
+            "transition": "0.25s",
+          }
+        }
+        width="78px"
+      />
+      <div>
+        <p
+          className="sc-dlnjwi bkUepo"
+        >
+          Susan
+        </p>
+        <p
+          className="sc-dlnjwi cbrSPi"
+        >
+          ID: 
+          35
+        </p>
+        <p
+          className="sc-dlnjwi krtMok"
+        >
+          Income 
+          <span
+            className="sc-pNWdM fyKwqX"
+          >
+            $
+            13,601
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div
+    className="sc-hHEiqL bkWmxg"
+  >
+    <button
+      className="sc-gKAaRy hbNDUu"
+      onClick={[Function]}
+    >
+      <p
+        className="sc-dlnjwi gSthXn"
+      >
+        Show less -
+      </p>
+    </button>
+    <button
+      className="sc-gKAaRy hbNDUu"
+      onClick={[Function]}
+    >
+      <p
+        className="sc-dlnjwi cYXUzV"
+      >
+        Show more +
+      </p>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`Test on <List /> It should render the component with the error message correctly: 
+            1) if the context value (listSearched) is equals an empty array
+            2) if the context value (valueSearched) is equals a number 1`] = `
+<div
+  className="sc-fKgJPI hdQWmr"
+>
+  <div
+    className="sc-bkbkJK jSWBvy"
+  >
+    <p
+      className="sc-iemWCZ eMmknN"
+    >
+      Your matches
+    </p>
+    <p
+      className="sc-iemWCZ jNSNbF"
+    >
+      Your income: 
+      <span
+        className="sc-pNWdM fyKwqX"
+      >
+        $
+        10,000
+      </span>
+    </p>
+  </div>
+  <p
+    className="sc-dlnjwi jgAYg"
+  >
+    No available Agents based on your income. Please try a different income value.
+  </p>
+  <p
+    className="sc-dlnjwi dtVbnI"
+    cursor="pointer"
+    onClick={[Function]}
+  >
+    Click here to return.
+  </p>
+</div>
+`;

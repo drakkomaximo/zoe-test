@@ -6,12 +6,29 @@ import { ShowButtonStyle } from './styles'
 interface Props {
     customIcon?: JSX.Element
     title: string
-    action: any
     type: string
   }
 
-const ShowButton: FC<Props> = ({action, title, customIcon, type}) => {
-  const { count, listSearched } = useContext(ListContext)
+const ShowButton: FC<Props> = ({title, customIcon, type}) => {
+  const { count, listSearched, setCount, setAddrType, setInternalLabel } = useContext(ListContext)
+
+  const selectAction = () =>{
+    switch (type) {
+      case 'MORE':
+        setCount( count >= listSearched.length ? count : count + 3 )
+        count <= listSearched.length && setAddrType('Select...')
+        count <= listSearched.length && setInternalLabel('Select...')
+        break
+      case 'LESS':
+        setCount( count === 3 ? 3 : count - 3)
+        count !== 3 && setAddrType('Select...')
+        count !== 3 && setInternalLabel('Select...')
+        break
+    
+      default:
+        break
+    }
+  }
 
   const validationsateOfColor = (type: string) => {
     switch (type) {
@@ -34,7 +51,7 @@ const ShowButton: FC<Props> = ({action, title, customIcon, type}) => {
   }
 
     return (
-      <ShowButtonStyle onClick={action}>
+      <ShowButtonStyle onClick={selectAction}>
         <PeopleContainerInformationText
         fSize={'16px'}
         fWeight={700}
